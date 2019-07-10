@@ -1,5 +1,5 @@
-let KEY = 'testingtesting123';
-let HASH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789{|}[]^_:;<=&>?@'.split('');
+let KEY = 'test';
+let HASH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()'.split('');
 let SHIFT = 24;
 let MAX = 30;
 
@@ -11,6 +11,7 @@ function printPassword(password) {
 
 function shiftLetter(letter) {
     shiftedIndex = HASH.indexOf(letter) + SHIFT;
+    //make this a while loop
     if (shiftedIndex > HASH.length) {
         shiftedIndex = shiftedIndex - HASH.length;
     }

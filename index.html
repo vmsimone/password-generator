@@ -16,10 +16,24 @@
         <span id="capital-letters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
         <span id="lowercase-letters">abcdefghijklmnopqrstuvwxyz</span>
         <span id="numbers">0123456789</span>
-        <span id="symbols">{|}[]^_:;&lt=&gt?@</span>
+        <span id="symbols">!@#$%^&*()</span>
       </p>
+      <fieldset>
+        <form name="restrictions">
+          <label for="restrictions">Which characters can be used?</label>
+          <input type="checkbox" checked="true">Capital Letters
+          <input type="checkbox" checked="true">Lowercase Letters
+          <input type="checkbox" checked="true">Numbers
+          <input type="checkbox" checked="true">Symbols
+        </form>
+        <br>
+        <form name="globals">
+          <label for="globals">Keyword:</label>
+          <input type="password">
+        </form>
+      </fieldset>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./animations.js"></script>
+    <script src="./encoder.js"></script>
   </body>
 </html>
