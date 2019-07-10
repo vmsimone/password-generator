@@ -12,11 +12,13 @@
 
     </nav>
     <main role="main" aria-live="assertive">
-      <p>Usable characters: 
-        <span id="capital-letters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
-        <span id="lowercase-letters">abcdefghijklmnopqrstuvwxyz</span>
-        <span id="numbers">0123456789</span>
-        <span id="symbols">!@#$%^&*()</span>
+      <p>Your current hash is:</p>
+      <p id="current-hash">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()
+      </p>
+      <p>
+        Your secret number is <span id="shift"></span> 
+        and your password will be <span id="max"></span> characters long.
       </p>
       <fieldset>
         <form name="restrictions">
@@ -30,12 +32,6 @@
           <input 
             type="checkbox" 
             checked="true" 
-            name="lowercase-letters"
-            value="abcdefghijklmnopqrstuvwxyz"
-          >Lowercase Letters
-          <input 
-            type="checkbox" 
-            checked="true" 
             name="numbers"
             value="0123456789"
           >Numbers
@@ -46,12 +42,23 @@
             value="!@#$%^&*()"
           >Symbols
           <br><br>
+
           <label for="globals">Keyword:</label>
           <input type="password" name="keyword">
           <br><br>
+
+          <label for="shift">Secret Number:</label>
+          <input type="number" name="shift" min="1" max="72" value="1">
+          <br><br>
+
+          <label for="max">Character Limit:</label>
+          <input type="number" name="max" min="6" max="50" value="6">
+          <br><br>
+
           <input type="submit" value="Generate Password">
         </form>
       </fieldset>
+      <p id="your-pass"></p>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./encoder.js"></script>

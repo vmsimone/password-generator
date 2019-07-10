@@ -1,9 +1,8 @@
-let SHIFT = 24;
 let MAX = 30;
 
 function printPassword(password) {
-    $('main').append(`
-        <p>Your password is ${password}</p>
+    $('#your-pass').text(`
+        Your password is ${password}
     `)
 }
 
@@ -16,21 +15,28 @@ function valueIfChecked(inputName) {
     }
 }
 
+function showCurrentHash() {
+    const currentHash = createHash().join('');
+    $('#current-hash').text(currentHash);
+}
+
 function createHash() {
     let hash = '';
 
-    let caps = valueIfChecked("capital-letters");
-    let lowercase = valueIfChecked("lowercase-letters");
-    let numbers = valueIfChecked("numbers");
-    let symbols = valueIfChecked("symbols");
+    const caps = valueIfChecked("capital-letters");
+    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    const numbers = valueIfChecked("numbers");
+    const symbols = valueIfChecked("symbols");
 
     hash = caps + lowercase + numbers + symbols;
     return hash.split('');
 }
 
 function shiftLetter(letter) {
-    let hash = createHash();
-    shiftedIndex = hash.indexOf(letter) + SHIFT;
+    const hash = createHash();
+    const shift = $('input[name="shift"]').val();
+
+    shiftedIndex = hash.indexOf(letter) + shift;
     while (shiftedIndex > hash.length) {
         shiftedIndex = shiftedIndex - hash.length;
     }
@@ -59,12 +65,18 @@ function hashPassword(keyword, maxLength) {
 
 function generatePassword() {
     const key = $('input[name="keyword"]').val();
-    let encryptedKey = encrypt(key);
-    let pass = hashPassword(encryptedKey, MAX);
+    const max = $('input[name="max"]').val();
+
+    const encryptedKey = encrypt(key);
+    const pass = hashPassword(encryptedKey, max);
     printPassword(pass);
 }
 
 function loadPage() {
+    $('input[type="checkbox"]').on('change', () => {
+        showCurrentHash();
+    });
+    
     $('form').on('submit', (e) => {
         e.preventDefault();
         generatePassword();
