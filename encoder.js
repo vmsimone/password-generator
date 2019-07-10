@@ -1,4 +1,3 @@
-let HASH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()'.split('');
 let SHIFT = 24;
 let MAX = 30;
 
@@ -8,18 +7,34 @@ function printPassword(password) {
     `)
 }
 
+function valueIfChecked(inputName) {
+    const boxIsChecked = $(`input[name=${inputName}]`).prop('checked');
+    if (boxIsChecked) {
+        return $(`input[name=${inputName}]`).val();
+    } else {
+        return '';
+    }
+}
+
 function createHash() {
-    const hashbrown = $('input[type="checkbox"][checked="true"]').val();
-    console.log(hashbrown);
+    let hash = '';
+
+    let caps = valueIfChecked("capital-letters");
+    let lowercase = valueIfChecked("lowercase-letters");
+    let numbers = valueIfChecked("numbers");
+    let symbols = valueIfChecked("symbols");
+
+    hash = caps + lowercase + numbers + symbols;
+    return hash.split('');
 }
 
 function shiftLetter(letter) {
-    createHash();
-    shiftedIndex = HASH.indexOf(letter) + SHIFT;
-    while (shiftedIndex > HASH.length) {
-        shiftedIndex = shiftedIndex - HASH.length;
+    let hash = createHash();
+    shiftedIndex = hash.indexOf(letter) + SHIFT;
+    while (shiftedIndex > hash.length) {
+        shiftedIndex = shiftedIndex - hash.length;
     }
-    return HASH[shiftedIndex];
+    return hash[shiftedIndex];
 }
 
 function encrypt(keyword) {
