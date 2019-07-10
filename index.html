@@ -21,15 +21,35 @@
       <fieldset>
         <form name="restrictions">
           <label for="restrictions">Which characters can be used?</label>
-          <input type="checkbox" checked="true">Capital Letters
-          <input type="checkbox" checked="true">Lowercase Letters
-          <input type="checkbox" checked="true">Numbers
-          <input type="checkbox" checked="true">Symbols
-        </form>
-        <br>
-        <form name="globals">
+          <input 
+            type="checkbox" 
+            checked="true" 
+            name="capital-letters"
+            value="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+          >Capital Letters
+          <input 
+            type="checkbox" 
+            checked="true" 
+            name="lowercase-letters"
+            value="abcdefghijklmnopqrstuvwxyz"
+          >Lowercase Letters
+          <input 
+            type="checkbox" 
+            checked="true" 
+            name="numbers"
+            value="0123456789"
+          >Numbers
+          <input 
+            type="checkbox" 
+            checked="true" 
+            name="symbols"
+            value="!@#$%^&*()"
+          >Symbols
+          <br><br>
           <label for="globals">Keyword:</label>
-          <input type="password">
+          <input type="password" name="keyword">
+          <br><br>
+          <input type="submit" value="Generate Password">
         </form>
       </fieldset>
     </main>

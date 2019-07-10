@@ -1,4 +1,3 @@
-let KEY = 'test';
 let HASH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()'.split('');
 let SHIFT = 24;
 let MAX = 30;
@@ -9,10 +8,15 @@ function printPassword(password) {
     `)
 }
 
+function createHash() {
+    const hashbrown = $('input[type="checkbox"][checked="true"]').val();
+    console.log(hashbrown);
+}
+
 function shiftLetter(letter) {
+    createHash();
     shiftedIndex = HASH.indexOf(letter) + SHIFT;
-    //make this a while loop
-    if (shiftedIndex > HASH.length) {
+    while (shiftedIndex > HASH.length) {
         shiftedIndex = shiftedIndex - HASH.length;
     }
     return HASH[shiftedIndex];
@@ -20,13 +24,13 @@ function shiftLetter(letter) {
 
 function encrypt(keyword) {
     let keywordArray = keyword.split('');
-    for(i=0; i<keywordArray.length; i++) {
+    for(i=0; i<keyword.length; i++) {
         keywordArray[i] = shiftLetter(keywordArray[i]);
     }
     return keywordArray.join('');
 }
 
-function generatePassword(keyword, maxLength) {
+function hashPassword(keyword, maxLength) {
     let startingPosition = keyword.length;
     let keywordArray = keyword.split('');
 
@@ -35,14 +39,21 @@ function generatePassword(keyword, maxLength) {
             shiftLetter(keywordArray[0])
         );
     }
-    console.log(keywordArray.length);
     return keywordArray.join('');
 }
 
-function loadPage() {
-    let encryptedKey = encrypt(KEY);
-    let pass = generatePassword(encryptedKey, MAX);
+function generatePassword() {
+    const key = $('input[name="keyword"]').val();
+    let encryptedKey = encrypt(key);
+    let pass = hashPassword(encryptedKey, MAX);
     printPassword(pass);
+}
+
+function loadPage() {
+    $('form').on('submit', (e) => {
+        e.preventDefault();
+        generatePassword();
+    });
 }
 
 $(loadPage);
