@@ -18,6 +18,14 @@ function showCurrentHash() {
     $('#current-hash').text(currentHash);
 }
 
+function showCurrentNumbers() {
+    const currentMax = $('input[name="max"]').val();
+    const currentShift = $('input[name="shift"]').val();
+
+    $('#max').text(currentMax);
+    $('#shift').text(currentShift);
+}
+
 function createHash() {
     let hash = '';
 
@@ -73,6 +81,10 @@ function generatePassword() {
 function loadPage() {
     $('input[type="checkbox"]').on('change', () => {
         showCurrentHash();
+    });
+
+    $('input[type="number"]').on('change', () => {
+        showCurrentNumbers();
     });
     
     $('form').on('submit', (e) => {
