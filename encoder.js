@@ -1,5 +1,3 @@
-let MAX = 30;
-
 function printPassword(password) {
     $('#your-pass').text(`
         Your password is ${password}
